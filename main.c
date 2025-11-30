@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #define NAME_SIZE 50                //Maximun size for name array
+#define MAX_PEOPLE 50               //people_array max cap
 #define FIRST_LOWER_CASE 97         //Lower case a is 97 in ascci
 #define CAPS_LOW_DIFF 32            //Distance between a lower case and a capital letter in ascii
 
@@ -44,4 +45,40 @@ int compare_by_name(const void* person1, const void* person2) {
         //If they are equal, loop continues
     }
     return -1;                              //If names are equal and equal in size to NAME_SIZE, first one in the array goes first
+}
+
+int main() {
+    Person andres = (Person) {
+    .name =  "Andres",
+    .age = 19,
+    .height = 1.83,
+    };
+    Person juanjose = (Person) {
+    .name =  "JuanJose",
+    .age = 21,
+    .height = 1.80,
+    };
+    Person santiago = (Person) {
+    .name =  "Santiago",
+    .age = 13,
+    .height = 1.60,
+    };
+    Person matias = (Person) {
+    .name =  "Matias",
+    .age = 8,
+    .height = 1.40,
+    };
+    Person carolina = (Person) {
+    .name =  "Carolina",
+    .age = 48,
+    .height = 1.70,
+    };
+    Person roy = (Person) {
+    .name =  "Roy",
+    .age = 55,
+    .height = 1.73,
+    };
+    char familia[6] = [andres, juanjose, santiago, matias, carolina, roy];
+    
+return 0;
 }
