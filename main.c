@@ -6,11 +6,42 @@
 #define FIRST_LOWER_CASE 97         //Lower case a is 97 in ascci
 #define CAPS_LOW_DIFF 32            //Distance between a lower case and a capital letter in ascii
 
+#define NAME 1
+#define AGE 2
+#define HEIGHT 3
+
 typedef struct Person {
     char name[NAME_SIZE];
     int age;
     double height;
 } Person;
+
+
+typedef struct People_array {
+    Person data[MAX_PEOPLE];
+    int size;
+} People_array;
+
+
+void print_array(People_array* arr, int operation) {
+    switch (operation) {
+    case NAME:
+        for (int i = 0; i < arr->size; i++) {
+            printf("%s\n", arr->data[i].name);
+        }
+        break;
+    case AGE:
+        for (int i = 0; i < arr->size; i++) {
+            printf("%d\n", arr->data[i].age);
+        }
+        break;
+    case HEIGHT:
+        for (int i = 0; i < arr->size; i++) {
+            printf("%f\n", arr->data[i].height);
+        }
+        break;
+    }
+}
 
 int compare_by_name(const void* person1, const void* person2) {
 
@@ -51,34 +82,43 @@ int main() {
     Person andres = (Person) {
     .name =  "Andres",
     .age = 19,
-    .height = 1.83,
+    .height = 183,
     };
     Person juanjose = (Person) {
     .name =  "JuanJose",
     .age = 21,
-    .height = 1.80,
+    .height = 180,
     };
     Person santiago = (Person) {
     .name =  "Santiago",
     .age = 13,
-    .height = 1.60,
+    .height = 160,
     };
     Person matias = (Person) {
     .name =  "Matias",
     .age = 8,
-    .height = 1.40,
+    .height = 140,
     };
     Person carolina = (Person) {
     .name =  "Carolina",
     .age = 48,
-    .height = 1.70,
+    .height = 170,
     };
     Person roy = (Person) {
     .name =  "Roy",
     .age = 55,
-    .height = 1.73,
+    .height = 173,
     };
-    char familia[6] = [andres, juanjose, santiago, matias, carolina, roy];
-    
+
+    People_array familia = {
+    .data = {andres, juanjose, santiago, matias, carolina, roy},
+    .size = 6,
+    };
+    printf("\nArreglo antes de ordenar\n");
+    print_array(&familia, NAME);
+    qsort(familia.data, familia.size, sizeof(Person), compare_by_name);
+    printf("\nArreglo despues de ordenar\n");
+    print_array(&familia, NAME);
+
 return 0;
 }
