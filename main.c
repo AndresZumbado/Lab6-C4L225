@@ -78,6 +78,18 @@ int compare_by_name(const void* person1, const void* person2) {
     return -1;                              //If names are equal and equal in size to NAME_SIZE, first one in the array goes first
 }
 
+int compare_by_age(const void* person1, const void* person2) {
+    const Person *p1 = (const Person *)person1;
+    const Person *p2 = (const Person *)person2;
+    if (p1->age < p2->age) {    //If person1 is younger, they go first
+        return -1;
+    }
+    if (p1->age > p2->age) {    //If person2 is younger, they go first
+        return 1;
+    }
+    return -1;      //If same age, person1 goes first
+}
+
 int main() {
     Person andres = (Person) {
     .name =  "Andres",
