@@ -137,10 +137,18 @@ int main() {
     .data = {andres, juanjose, santiago, matias, carolina, roy},
     .size = 6,
     };
-    printf("\nArreglo antes de ordenar\n");
+    printf("\nArray before sorting\n");
     print_array(&familia, NAME);
     qsort(familia.data, familia.size, sizeof(Person), compare_by_name);
-    printf("\nArreglo despues de ordenar\n");
+    printf("\nArray after sorting by name\n");
+    print_array(&familia, NAME);
+ 
+    qsort(familia.data, familia.size, sizeof(Person), compare_by_age); 
+    printf("\nArray after sorting by age\n");
+    print_array(&familia, NAME);
+
+    qsort(familia.data, familia.size, sizeof(Person), compare_by_height); 
+    printf("\nArray after sorting by height\n");
     print_array(&familia, NAME);
 
 return 0;
