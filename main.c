@@ -90,6 +90,17 @@ int compare_by_age(const void* person1, const void* person2) {
     return -1;      //If same age, person1 goes first
 }
 
+int compare_by_height(const void* person1, const void* person2) {
+    const Person *p1 = (const Person *)person1;
+    const Person *p2 = (const Person *)person2;
+    if (p1->height < p2->height) {    //If person1 is shorter, they go first
+        return -1;
+    }
+    if (p1->height > p2->height) {    //If person2 is shorted, they go first
+        return 1;
+    }
+    return -1;      //If same height, person1 goes first
+}
 int main() {
     Person andres = (Person) {
     .name =  "Andres",
