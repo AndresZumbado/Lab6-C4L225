@@ -22,7 +22,8 @@ typedef struct People_array {
     int size;
 } People_array;
 
-
+//print_array prints the name, age or height of every member of a People_array
+//It receives an array an an operation which decides what element will be printed
 void print_array(People_array* arr, int operation) {
     switch (operation) {
     case NAME:
@@ -43,10 +44,11 @@ void print_array(People_array* arr, int operation) {
     }
 }
 
+//compare_by_name compares the names of two people and decides which name goes first
 int compare_by_name(const void* person1, const void* person2) {
 
-    const Person *p1 = (const Person *)person1;
-    const Person *p2 = (const Person *)person2;
+    const Person* p1 = (const Person *)person1;     //casting from const void* to Person*
+    const Person* p2 = (const Person *)person2;
 
     int letter1;
     int letter2;
@@ -101,19 +103,21 @@ int compare_by_height(const void* person1, const void* person2) {
     }
     return -1;      //If same height, person1 goes first
 }
+
 int main() {
+    //initializing family members
     Person andres = (Person) {
     .name =  "Andres",
     .age = 19,
     .height = 183,
     };
     Person juanjose = (Person) {
-    .name =  "JuanJose",
+    .name =  "juanJose",
     .age = 21,
     .height = 180,
     };
     Person santiago = (Person) {
-    .name =  "Santiago",
+    .name =  "santiago",
     .age = 13,
     .height = 160,
     };
@@ -128,28 +132,31 @@ int main() {
     .height = 170,
     };
     Person roy = (Person) {
-    .name =  "Roy",
+    .name =  "roy",
     .age = 55,
     .height = 173,
     };
 
-    People_array familia = {
+    //Putting every member ina  family array
+    People_array family = {
     .data = {andres, juanjose, santiago, matias, carolina, roy},
     .size = 6,
     };
+    
+    //Testing all functions
     printf("\nArray before sorting\n");
-    print_array(&familia, NAME);
-    qsort(familia.data, familia.size, sizeof(Person), compare_by_name);
+    print_array(&family, NAME);
+    qsort(family.data, family.size, sizeof(Person), compare_by_name);
     printf("\nArray after sorting by name\n");
-    print_array(&familia, NAME);
+    print_array(&family, NAME);
  
-    qsort(familia.data, familia.size, sizeof(Person), compare_by_age); 
+    qsort(family.data, family.size, sizeof(Person), compare_by_age); 
     printf("\nArray after sorting by age\n");
-    print_array(&familia, NAME);
+    print_array(&family, NAME);
 
-    qsort(familia.data, familia.size, sizeof(Person), compare_by_height); 
+    qsort(family.data, family.size, sizeof(Person), compare_by_height); 
     printf("\nArray after sorting by height\n");
-    print_array(&familia, NAME);
+    print_array(&family, NAME);
 
 return 0;
 }
